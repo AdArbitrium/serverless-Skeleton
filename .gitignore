@@ -1,0 +1,6 @@
+venv
+.vs
+node_modules
+.serverless
+*.pyc
+__pycache__
