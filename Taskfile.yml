@@ -1,0 +1,14 @@
+version: '3'
+
+tasks:
+  create_venv:
+    cmds:
+      - python -m venv venv
+
+
+  deploy:
+    cmds:
+      - serverless deploy -v --stage dev --region us-west-2
+  remove:
+    cmds:
+      - serverless remove -v --stage dev --region us-west-2
