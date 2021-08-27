@@ -1,7 +1,7 @@
 # serverless.yml
 
 
-service: serverless-flask
+service: serverless-flask-persistence
 
 
 plugins:
@@ -34,15 +34,23 @@ provider:
 
   region: us-west-2
 
+  lambdaHashingVersion: 20201221
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:*
+      Resource: "*"
 
 functions:
 
   app:
 
-    handler: wsgi.handler
+    handler: wsgi_handler.handler
 
     events:
 
       - http: ANY /
 
       - http: 'ANY {proxy+}'
+      

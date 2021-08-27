@@ -4,11 +4,24 @@ tasks:
   create_venv:
     cmds:
       - python -m venv venv
+    #ONLY RUN AFTER VENV IS ACTIVATED
+  
+  setup:
+    cmds:
+      - npm i serverless-python-requirements serverless-wsgi
+  
+  venv:
+    cmds:
+      - ./venv/Scipts/Activate.ps1
 
+  freeze:
+    cmds:
+      - pip freeze | Out-File -Encoding UTF8 requirements.txt
 
   deploy:
     cmds:
       - serverless deploy -v --stage dev --region us-west-2
+
   remove:
     cmds:
       - serverless remove -v --stage dev --region us-west-2
